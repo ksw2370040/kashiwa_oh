@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Game's Blog{% endblock %}
+        <!-- Page Header-->
+        {% block contents %}
+        <main class="masthead" style="background-image: url({% static 'assets/img/wakuao.png' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Home</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7" style="background-image: url({% static 'assets/img/white_01.jpg' %})">
+                        {% include "games_title.html" %} 
+                        {% for record in orderby_records %} 
+                        <!-- Post preview-->
+                        <div class="post-preview">
+                            <a href={% url 'gameapp:game_detail' record.pk %}>
+                                <h2 class="post-title">{{record.title}}</h2>
+                                <h3 class="post-subtitle">
+                                    <span style="font-size: 14px;">
+                                        {{record.content|truncatechars:50}}
+                                    </span>
+                                </h3>
+                            </a>
+                            <span class="meta">
+                                <a href="{% url 'gameapp:index' %}">Game Blog</a>
+                                {{record.posted_at}}に投稿/カテゴリ:
+                                <button type="button" 
+                                class="btn btn-sm btn-outline-secondary"
+                                onclick="location.href='{% url 'gameapp:games_cat' category=record.category.id %}'">{{record.category.title}}</button>
+                            </span>
+                        </div>
+                        <!-- Divider-->
+                        <hr class="my-4" />
+                        {% endfor %}
+                        <!-- Post preview-->
+                        <!-- Divider-->
+                        <!-- Post preview-->
+                        <!-- Divider-->
+                        <!-- Post preview-->
+                        <!-- Divider-->
+                        <!-- Pager-->
+                        {% include "pagination.html" %}                
+                    </div>
+                </div>
+            </div>
+        </main>
+        {% endblock %}
+        <!-- Footer-->

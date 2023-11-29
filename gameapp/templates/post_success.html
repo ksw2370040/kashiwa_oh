@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Post Success{% endblock %}
+    {% block contents %}
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col offset-2">
+                <h4>投稿が完了しました！</h4>
+                <a href="{% url 'gameapp:post' %}">続けて投稿する</a>
+            </div>
+            <p><a href="{% url 'gameapp:index' %}"> 
+                トップページに戻る</a> 
+            </p> 
+        </div>
+    </div>
+    {% endblock %}

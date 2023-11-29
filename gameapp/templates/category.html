@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Game Category{% endblock %} 
+{% block contents %}  
+<main class="masthead" style="background-image: url({% static 'assets/img/wakuao.png' %})">
+    <section class="py-5 text-center container">
+            <h1>Category</h1>
+{% include "games_list.html" %} 
+{% include "pagination.html" %}
+</main>
+
+{% endblock %}

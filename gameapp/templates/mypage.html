@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Mypage{% endblock %}
+    {% block contents %}
+    <main class="masthead" style="background-image: url({% static 'assets/img/wakuao.png' %})">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>MyPage</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if user.is_authenticated  %}
+            <br>
+                <div style="text-align: center">
+                <h4>{{user.username}}さんのマイページ</h4> 
+                {% if object_list.count == 0 %} 
+                <p>{{user.username}}さんの投稿はありません</p> 
+                {% else %} 
+                    <p>投稿<strong>{{object_list.count}}</strong>件</p> 
+                {% endif %} 
+                <a href="{% url 'gameapp:post' %}">投稿する</a>
+            </div>
+            <hr>
+        {% endif %}
+        {% include "games_list.html" %}
+        {% include "pagination.html" %}
+    </main>
+    {% endblock %}
